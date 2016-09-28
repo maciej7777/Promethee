@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmcda:XMCDA xmlns:xmcda="http://www.decision-deck.org/2009/XMCDA-2.1.0">
+	<projectReference>
+		<title>SixRealCars - Categories profiles</title>
+		<comment>Only the profiles and categories association, from the "SixRealCars" data set.</comment>
+	</projectReference>
+	<categoriesProfiles>
+		<categoryProfile>
+			<alternativeID>pMG</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>Medium</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>Good</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>pBM</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>Bad</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>Medium</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
+	</categoriesProfiles>
+</xmcda:XMCDA>
