@@ -9,7 +9,8 @@ Options:
                    alternatives.xml
                    classes.xml
                    classes_profiles.xml
-                   flows.xml
+                   positive_flows.xml
+                   negative_flows.xml
                    method_params.xml
     -o DIR     Specify output directory. Files generated as output:
 
@@ -31,46 +32,55 @@ __version__ = '0.0.1'
 
 
 
-def sortWithLimitingProfiles():
-  print ('a')
+def sortWithBoundaryProfiles(alternatives, categories, profiles_categories, alternatives_positive_flows, alternatives_negative_flows, categories_positive_flows, categories_negative_flows):
+  print ('boundary')
 
 
-def sortWithCentralProfiles():
-  print ('b')
+def sortWithCentralProfiles(alternatives, categories, profiles_categories, alternatives_positive_flows, alternatives_negative_flows, categories_positive_flows, categories_negative_flows):
+  print ('central')
 
 
 def main():
-  #try:
-  args = docopt(__doc__, version=__version__)
-  output_dir = None
-  input_dir, output_dir = get_dirs(args)
-  filenames = [
-    # every tuple below == (filename, is_optional)
-    ('alternatives.xml', False),
-    ('classes.xml', False),
-    ('method_parameters.xml', False),
-    ('classes_profiles.xml', False),
-    ('alternatives_values.xml', False),
-  ]
-  params = [
-    'alternatives',
-    'categories',
-    'comparison_with',
-    'categories_profiles',
-    'alternatives_values',
-  ]
-  d = get_input_data(input_dir, filenames, params)
+  try:
+    args = docopt(__doc__, version=__version__)
+    output_dir = None
+    input_dir, output_dir = get_dirs(args)
+    filenames = [
+      # every tuple below == (filename, is_optional)
+      ('alternatives.xml', False),
+      ('classes.xml', False),
+      ('classes_profiles.xml', False),
+      ('method_parameters.xml', False),
+      ('positive_flows.xml', False),
+      ('negative_flows.xml', False),
+    ]
+    params = [
+      'alternatives',
+      'categories',
+      'comparison_with',
+      'alternatives_positive_flows',
+      'alternatives_negative_flows',
+      'categories_positive_flows',
+      'categories_negative_flows',
+      'categories_rank',
+      'profiles_categories'
+    ]
+    d = get_input_data(input_dir, filenames, params)
   
-  print (d.alternatives_values)
-  #except Exception as err:
-  #  err_msg = get_error_message(err)
-  #  log_msg = traceback.format_exc()
-  #  print(log_msg.strip())
-  #  create_messages_file((err_msg, ), (log_msg, ), output_dir)
-  #  print ('blad')
-  #  return 1
+    if d.comparison_with == 'boundary_profiles':
+      sortWithBoundaryProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
+    elif d.comparison_with == 'central_profiles':
+      sortWithCentralProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
+    else:
+      raise InputDataError("Wrong comparison type ('{}') specified."
+                             .format(comparison_with))
 
-
+  except Exception as err:
+    err_msg = get_error_message(err)
+    log_msg = traceback.format_exc()
+    print(log_msg.strip())
+    create_messages_file((err_msg, ), (log_msg, ), output_dir)
+    return 1
 
 if __name__ == '__main__':
   sys.exit(main())

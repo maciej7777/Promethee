@@ -8,12 +8,12 @@
 	</projectReference>
 
 	<alternatives>
-		<alternative id="a01" name="Audi A3" />
-		<alternative id="a02" name="Audi A4" />
-		<alternative id="a03" name="BMW 118" />
-		<alternative id="a04" name="BMW 320" />
-		<alternative id="a05" name="Volvo C30" />
-		<alternative id="a06" name="Volvo S40" />
+		<alternative id="a1" name="1" />
+		<alternative id="a2" name="2" />
+		<alternative id="a3" name="3" />
+		<alternative id="a4" name="4" />
+		<alternative id="a5" name="5" />
+		<alternative id="a6" name="6" />
 	</alternatives>
 
 </xmcda:XMCDA>

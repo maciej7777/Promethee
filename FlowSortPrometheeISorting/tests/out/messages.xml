@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.0'
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd'>
+<methodMessages>
+  <errorMessage>
+    <text><![CDATA[InputDataError: There's a problem with some of your input files, namely: 'profiles_categories.xml'. Please check if the contents of this file matches the method parameters that you've specified.]]></text>
+  </errorMessage>
+  <logMessage>
+    <text><![CDATA[Traceback (most recent call last):
+  File "./FlowSortPrometheISorting.py", line 68, in main
+    d = get_input_data(input_dir, filenames, params)
+  File "/home/maciej7777/Dokumenty/Promethee/FlowSortPrometheeISorting/common.py", line 835, in get_input_data
+    raise InputDataError(msg)
+InputDataError: There's a problem with some of your input files, namely: 'profiles_categories.xml'. Please check if the contents of this file matches the method parameters that you've specified.]]></text>
+  </logMessage>
+</methodMessages>
+</xmcda:XMCDA>

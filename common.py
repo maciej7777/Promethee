@@ -387,6 +387,62 @@ def _get_categories_profiles(tree, comparison_with):
     return categories_profiles
 
 
+####
+def _get_profiles_categories(tree, comparison_with, rank_tree):
+
+    #def _get_profiles_ordering(last_found, profiles):
+    #    """Gets the ordering of categories (classes) profiles."""
+    #    for i in categories_profiles_full.values():
+    #        if i.get('lower') == last_found:
+    #            if i.get('upper') is None:
+    #                return
+    #            profiles.append(i.get('upper'))
+    #            last_found = profiles[-1]
+    #            break
+    #    _get_profiles_ordering(last_found, profiles)
+
+    def _sort_profiles (category_profiles, categories_names, rank_tree):
+        sortedCategories = {}
+        categories_rank = px.getCategoriesRank(rank_tree, categories_names)
+        for category in categories_rank:
+            sortedCategories[categories_rank[category]] = {}
+            sortedCategories[categories_rank[category]]["classes"] = category_profiles[category]
+            sortedCategories[categories_rank[category]]["id"] = category
+        return sortedCategories
+          
+
+    if tree is None and comparison_with in ('boundary_profiles',
+                                            'central_profiles'):
+        raise InputDataError("Missing definitions of profiles (did you "
+                             "forget about 'classes_profiles.xml'?).")
+    if comparison_with == 'alternatives':
+        categories_profiles = None
+    elif comparison_with == 'boundary_profiles':
+        categories_profiles = []
+        xpath = '//categoriesProfiles//alternativeID/text()'
+        categories_names = list(set(tree.xpath(xpath)))
+        categories_profiles = px.getProfilesCategories(tree, categories_names)
+            #_get_profiles_ordering(None, categories_profiles)
+    elif comparison_with == 'central_profiles':
+        categories_profiles = {}
+        xpath = '//categoriesProfiles//alternativeID/text()'
+        categories_names = list(set(tree.xpath(xpath)))
+        for xmlprofile in tree.findall(".//categoryProfile"):
+            try:
+                profile_id = xmlprofile.find("alternativeID").text
+                category = xmlprofile.find("central/categoryID").text
+                categories_profiles[profile_id] = category
+            except:
+                categories_profiles = {}
+                break
+    else:
+        raise InputDataError("Wrong comparison type ('{}') specified."
+                             .format(comparison_with))
+    return _sort_profiles (categories_profiles, categories_names, rank_tree)
+
+
+
+
 def _get_criteria_interactions(xmltree, criteria_allowed):
     """In the returned dict 'interactions', the most outer key designates
     direction of the interaction effect (i.e. which criterion is affected),
@@ -446,14 +502,39 @@ def get_input_data(input_dir, filenames, params, **kwargs):
         alternatives = px.getAlternativesID(trees['alternatives'])
         return alternatives  # list
 
-    def get_alternatives_values(*args, **kwargs):
-	alternativesID = px.getAlternativesID(trees['alternatives']) 
-        alternatives_values = px.getAlternativeValue(trees['alternatives_values'], alternativesID)
-        return alternatives_values
+    def get_alternatives_flows(*args, **kwargs):
+        alternativesID = px.getAlternativesID(trees['alternatives']) 
+        flows = px.getAlternativeValue(trees['flows'], alternativesID,)
+        return flows
+
+    def get_alternatives_negative_flows(*args, **kwargs):
+        alternativesID = px.getAlternativesID(trees['alternatives']) 
+        flows = px.getAlternativeValue(trees['positive_flows'], alternativesID,)
+        return flows
+
+    def get_alternatives_positive_flows(*args, **kwargs):
+        alternativesID = px.getAlternativesID(trees['alternatives']) 
+        flows = px.getAlternativeValue(trees['positive_flows'], alternativesID,)
+        return flows
 
     def get_categories(*args, **kwargs):
         categories = px.getCategoriesID(trees['categories'])
         return categories  # list
+
+    def get_categories_flows(*args, **kwargs):
+        profilesID = get_categories() 
+        flows = px.getAlternativeValue(trees['flows'], profilesID,)
+        return flows
+
+    def get_categories_negative_flows(*args, **kwargs):
+        profilesID = get_categories() 
+        flows = px.getAlternativeValue(trees['positive_flows'], profilesID,)
+        return flows
+
+    def get_categories_positive_flows(*args, **kwargs):
+        profilesID = get_categories() 
+        flows = px.getAlternativeValue(trees['positive_flows'], profilesID,)
+        return flows
 
     # TODO merge _get_categories_profiles with this function
     def get_categories_profiles(*args, **kwargs):
@@ -468,6 +549,16 @@ def get_input_data(input_dir, filenames, params, **kwargs):
             comparison_with,
         )
         return categories_profiles  # NoneType, dict, list
+
+    def get_profiles_categories(*args, **kwargs):
+        #profilesCategories = px.getProfilesCategories(trees['categories_profiles'], None)
+        comparison_with = px.getParameterByName(
+            trees['method_parameters'],
+            'comparison_with',
+        )
+        if comparison_with in ('boundary_profiles', 'central_profiles'):
+            profilesCategories = _get_profiles_categories(trees['categories_profiles'], comparison_with, trees['categories'])
+        return profilesCategories
 
     def get_categories_rank(*args, **kwargs):
         categories = px.getCategoriesID(trees['categories'])
@@ -688,31 +779,39 @@ def get_input_data(input_dir, filenames, params, **kwargs):
 
     _functions_dict = {
         'alternatives': get_alternatives,
-        'alternatives_values': get_alternatives_values,
+        'alternatives_flows': get_alternatives_flows,
+        'alternatives_positive_flows': get_alternatives_positive_flows,
+        'alternatives_negative_flows': get_alternatives_negative_flows,
         'categories' : get_categories,
+        'categories_flows' : get_categories_flows,
+        'categories_positive_flows' : get_categories_positive_flows,
+        'categories_negative_flows' : get_categories_negative_flows,
         'categories_profiles': get_categories_profiles,
         'categories_rank': get_categories_rank,
-        'concordance': get_concordance,
+        #'concordance': get_concordance,
         'comparison_with': partial(get_param_string, 'comparison_with'),
-        'credibility': get_credibility,
-        'criteria': get_criteria,
-        'cut_threshold': get_cut_threshold,
-        'cv_crossed': get_cv_crossed,
-        'discordance': get_discordance,
-        'eliminate_cycles_method': partial(get_param_string, 'eliminate_cycles_method'),
-        'interactions': get_interactions,
-        'only_max_discordance': partial(get_param_boolean, 'only_max_discordance'),
-        'outranking': get_outranking,
-        'performances': get_performances,
-        'pref_directions': get_pref_directions,
-        'profiles_performance_table': get_profiles_performance_table,
-        'reinforcement_factors': get_reinforcement_factors,
-        'thresholds': get_thresholds,
-        'weights': get_weights,
-        'with_denominator': partial(get_param_boolean, 'with_denominator'),
-        'use_partials': partial(get_param_boolean, 'use_partials'),
-        'use_pre_veto': partial(get_param_boolean, 'use_pre_veto'),
-        'z_function': partial(get_param_string, 'z_function'),
+        'profiles_categories': get_profiles_categories,
+        #'credibility': get_credibility,
+        #'criteria': get_criteria,
+        #'cut_threshold': get_cut_threshold,
+        #'cv_crossed': get_cv_crossed,
+        #'discordance': get_discordance,
+        #'eliminate_cycles_method': partial(get_param_string, 'eliminate_cycles_method'),
+        #'flows': get_flows,
+        #'interactions': get_interactions,
+        #'only_max_discordance': partial(get_param_boolean, 'only_max_discordance'),
+        #'outranking': get_outranking,
+        #'performances': get_performances,
+        #'pref_directions': get_pref_directions,
+        #'profiles_performance_table': get_profiles_performance_table,
+        #'reinforcement_factors': get_reinforcement_factors,
+        #'thresholds': get_thresholds,
+        #'weights': get_weights,
+        #'with_denominator': partial(get_param_boolean, 'with_denominator'),
+        #'use_partials': partial(get_param_boolean, 'use_partials'),
+        #'use_pre_veto': partial(get_param_boolean, 'use_pre_veto'),
+        #'z_function': partial(get_param_string, 'z_function'),
+
     }
 
     args = (input_dir, filenames, params)

@@ -246,7 +246,7 @@ def getSimpleValue (xmltree) :
 
 
 def getAlternativeValue (xmltree, alternativesId, mcdaConcept=None) :
-
+	
 	if mcdaConcept == None :
 		strSearch = "alternativesValues"
 	else :
@@ -257,10 +257,10 @@ def getAlternativeValue (xmltree, alternativesId, mcdaConcept=None) :
 		return {}
 		
 	values = {}
-	
+
 	for alternativeValue in alternativesValues.findall ("./alternativeValue") :
 		alt = alternativeValue.find ("alternativeID").text
-		if alternativeId.count(alt) > 0 :
+		if alternativesId.count(alt) > 0 :
 			values[alt] = getValue (alternativeValue)
 
 	return values
