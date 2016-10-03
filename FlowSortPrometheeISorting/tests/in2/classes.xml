@@ -13,5 +13,8 @@
         <category id="b3">
             <rank><integer>3</integer></rank>
         </category>
+        <category id="b5">
+            <rank><integer>5</integer></rank>
+        </category>
     </categories>
 </xmcda:XMCDA>

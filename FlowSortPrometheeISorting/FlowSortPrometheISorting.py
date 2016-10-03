@@ -33,10 +33,53 @@ __version__ = '0.0.1'
 
 
 def sortWithBoundaryProfiles(alternatives, categories, profiles_categories, alternatives_positive_flows, alternatives_negative_flows, categories_positive_flows, categories_negative_flows):
-  print ('boundary')
+  
+  alternatives_assigns = {}
+  for alternative in alternatives:
+    assign = {}
+    assign["low"] = profiles_categories[1]["classes"]["lower"]
+    assign["top"] = profiles_categories[1]["classes"]["lower"]
+    for i in range (1,len(profiles_categories)+1):
+      if alternatives_positive_flows[alternative] >= categories_positive_flows[profiles_categories[i]["id"]]:
+        assign["top"] = profiles_categories[i]["classes"]["upper"]
+      else:
+        break
+    
+    for j in range (1,len(profiles_categories)+1):
+      if alternatives_negative_flows[alternative] < categories_negative_flows[profiles_categories[j]["id"]]:
+        assign["low"] = profiles_categories[j]["classes"]["upper"]
+      else:
+        break
+    alternatives_assigns[alternative] = assign
+
+  print (alternatives_assigns) 
+
+  #print ('boundary')
 
 
 def sortWithCentralProfiles(alternatives, categories, profiles_categories, alternatives_positive_flows, alternatives_negative_flows, categories_positive_flows, categories_negative_flows):
+
+  alternatives_assigns = {}
+
+  for alternative in alternatives:
+    assign = {}
+    assign["low"] = profiles_categories[1]["classes"]
+    assign["top"] = profiles_categories[1]["classes"]
+
+    for i in range (2,len(profiles_categories)+1):
+      if alternatives_positive_flows[alternative] > (categories_positive_flows[profiles_categories[i]["id"]] + categories_positive_flows[profiles_categories[i-1]["id"]])/2:
+        assign["top"] = profiles_categories[i]["classes"]
+      else:
+        break
+    
+    for j in range (2,len(profiles_categories)+1):
+      if alternatives_negative_flows[alternative] <= (categories_negative_flows[profiles_categories[j]["id"]] + categories_negative_flows[profiles_categories[j-1]["id"]])/2:
+        assign["low"] = profiles_categories[j]["classes"]
+      else:
+        break
+    alternatives_assigns[alternative] = assign
+
+  print (alternatives_assigns)
   print ('central')
 
 

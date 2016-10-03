@@ -509,7 +509,7 @@ def get_input_data(input_dir, filenames, params, **kwargs):
 
     def get_alternatives_negative_flows(*args, **kwargs):
         alternativesID = px.getAlternativesID(trees['alternatives']) 
-        flows = px.getAlternativeValue(trees['positive_flows'], alternativesID,)
+        flows = px.getAlternativeValue(trees['negative_flows'], alternativesID,)
         return flows
 
     def get_alternatives_positive_flows(*args, **kwargs):
@@ -528,7 +528,7 @@ def get_input_data(input_dir, filenames, params, **kwargs):
 
     def get_categories_negative_flows(*args, **kwargs):
         profilesID = get_categories() 
-        flows = px.getAlternativeValue(trees['positive_flows'], profilesID,)
+        flows = px.getAlternativeValue(trees['negative_flows'], profilesID,)
         return flows
 
     def get_categories_positive_flows(*args, **kwargs):

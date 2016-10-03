@@ -49,5 +49,16 @@
 				</upperCategory>
 			</limits>
 		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b5</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>C5</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>C6</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
 	</categoriesProfiles>
 </xmcda:XMCDA>
