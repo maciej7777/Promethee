@@ -390,17 +390,6 @@ def _get_categories_profiles(tree, comparison_with):
 ####
 def _get_profiles_categories(tree, comparison_with, rank_tree):
 
-    #def _get_profiles_ordering(last_found, profiles):
-    #    """Gets the ordering of categories (classes) profiles."""
-    #    for i in categories_profiles_full.values():
-    #        if i.get('lower') == last_found:
-    #            if i.get('upper') is None:
-    #                return
-    #            profiles.append(i.get('upper'))
-    #            last_found = profiles[-1]
-    #            break
-    #    _get_profiles_ordering(last_found, profiles)
-
     def _sort_profiles (category_profiles, categories_names, rank_tree):
         sortedCategories = {}
         categories_rank = px.getCategoriesRank(rank_tree, categories_names)
@@ -552,10 +541,12 @@ def get_input_data(input_dir, filenames, params, **kwargs):
 
     def get_profiles_categories(*args, **kwargs):
         #profilesCategories = px.getProfilesCategories(trees['categories_profiles'], None)
-        comparison_with = px.getParameterByName(
-            trees['method_parameters'],
-            'comparison_with',
-        )
+        comparison_with = kwargs.get('comparison_with')
+        if comparison_with is None:
+            comparison_with = px.getParameterByName(
+                trees['method_parameters'],
+                'comparison_with',
+            )
         if comparison_with in ('boundary_profiles', 'central_profiles'):
             profilesCategories = _get_profiles_categories(trees['categories_profiles'], comparison_with, trees['categories'])
         return profilesCategories

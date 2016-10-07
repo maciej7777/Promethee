@@ -25,7 +25,7 @@ import traceback
 from docopt import docopt
 
 from common import comparisons_to_xmcda, create_messages_file, get_dirs, \
-get_error_message, get_input_data, write_xmcda, Vividict
+get_error_message, get_input_data, write_xmcda, assignments_as_intervals_to_xmcda
 
 
 __version__ = '0.0.1'
@@ -34,53 +34,68 @@ __version__ = '0.0.1'
 
 def sortWithBoundaryProfiles(alternatives, categories, profiles_categories, alternatives_positive_flows, alternatives_negative_flows, categories_positive_flows, categories_negative_flows):
   
-  alternatives_assigns = {}
+  assignments = {}
+  #alternatives_assigns = {}
   for alternative in alternatives:
-    assign = {}
-    assign["low"] = profiles_categories[1]["classes"]["lower"]
-    assign["top"] = profiles_categories[1]["classes"]["lower"]
+    #assign = {}
+    #assign["low"] = profiles_categories[1]["classes"]["lower"]
+    #assign["top"] = profiles_categories[1]["classes"]["lower"]
+    low = profiles_categories[1]["classes"]["lower"]
+    top = profiles_categories[1]["classes"]["lower"] 
     for i in range (1,len(profiles_categories)+1):
       if alternatives_positive_flows[alternative] >= categories_positive_flows[profiles_categories[i]["id"]]:
-        assign["top"] = profiles_categories[i]["classes"]["upper"]
+        #assign["top"] = profiles_categories[i]["classes"]["upper"]
+        top = profiles_categories[i]["classes"]["upper"]
       else:
         break
     
     for j in range (1,len(profiles_categories)+1):
       if alternatives_negative_flows[alternative] < categories_negative_flows[profiles_categories[j]["id"]]:
-        assign["low"] = profiles_categories[j]["classes"]["upper"]
+        #assign["low"] = profiles_categories[j]["classes"]["upper"]
+        low = profiles_categories[j]["classes"]["upper"]
       else:
         break
-    alternatives_assigns[alternative] = assign
-
-  print (alternatives_assigns) 
+    #alternatives_assigns[alternative] = assign
+    assignments[alternative] = (low, top)
+    
+  print (assignments)
+  return assignments
 
   #print ('boundary')
 
 
 def sortWithCentralProfiles(alternatives, categories, profiles_categories, alternatives_positive_flows, alternatives_negative_flows, categories_positive_flows, categories_negative_flows):
 
-  alternatives_assigns = {}
+  #alternatives_assigns = {}
+  assignments = {}
 
   for alternative in alternatives:
-    assign = {}
-    assign["low"] = profiles_categories[1]["classes"]
-    assign["top"] = profiles_categories[1]["classes"]
+    #assign = {}
+    #assign["low"] = profiles_categories[1]["classes"]
+    #assign["top"] = profiles_categories[1]["classes"]
+    low = profiles_categories[1]["classes"]
+    top = profiles_categories[1]["classes"]
 
     for i in range (2,len(profiles_categories)+1):
-      if alternatives_positive_flows[alternative] > (categories_positive_flows[profiles_categories[i]["id"]] + categories_positive_flows[profiles_categories[i-1]["id"]])/2:
-        assign["top"] = profiles_categories[i]["classes"]
+      if alternatives_positive_flows[alternative] >= (categories_positive_flows[profiles_categories[i]["id"]] + categories_positive_flows[profiles_categories[i-1]["id"]])/2:
+        #assign["top"] = profiles_categories[i]["classes"]
+        top =  profiles_categories[i]["classes"]
       else:
         break
     
     for j in range (2,len(profiles_categories)+1):
-      if alternatives_negative_flows[alternative] <= (categories_negative_flows[profiles_categories[j]["id"]] + categories_negative_flows[profiles_categories[j-1]["id"]])/2:
-        assign["low"] = profiles_categories[j]["classes"]
+      if alternatives_negative_flows[alternative] < (categories_negative_flows[profiles_categories[j]["id"]] + categories_negative_flows[profiles_categories[j-1]["id"]])/2:
+        #assign["low"] = profiles_categories[j]["classes"]
+        low = profiles_categories[j]["classes"]
       else:
         break
-    alternatives_assigns[alternative] = assign
+    #alternatives_assigns[alternative] = assign
+    assignments[alternative] = (low, top)
 
-  print (alternatives_assigns)
+  #print (alternatives_assigns)
+  print (assignments)
   print ('central')
+  return assignments
 
 
 def main():
@@ -111,12 +126,14 @@ def main():
     d = get_input_data(input_dir, filenames, params)
   
     if d.comparison_with == 'boundary_profiles':
-      sortWithBoundaryProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
+      assignments = sortWithBoundaryProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
     elif d.comparison_with == 'central_profiles':
-      sortWithCentralProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
+      assignments = sortWithCentralProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
     else:
       raise InputDataError("Wrong comparison type ('{}') specified."
                              .format(comparison_with))
+    xmcda_assign = assignments_as_intervals_to_xmcda(assignments)
+    write_xmcda(xmcda_assign, os.path.join(output_dir, 'assignments.xml'))
 
   except Exception as err:
     err_msg = get_error_message(err)

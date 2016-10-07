@@ -4,15 +4,13 @@
   xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd'>
 <methodMessages>
   <errorMessage>
-    <text><![CDATA[KeyError: 5]]></text>
+    <text><![CDATA[NameError: global name 'assignments_as_intervals_to_xmcda' is not defined]]></text>
   </errorMessage>
   <logMessage>
     <text><![CDATA[Traceback (most recent call last):
-  File "./FlowSortPrometheISorting.py", line 116, in main
-    sortWithCentralProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
-  File "./FlowSortPrometheISorting.py", line 76, in sortWithCentralProfiles
-    if alternatives_negative_flows[alternative] <= (categories_negative_flows[profiles_categories[i]["id"]] + categories_negative_flows[profiles_categories[i+1]["id"]])/2:
-KeyError: 5]]></text>
+  File "./FlowSortPrometheISorting.py", line 128, in main
+    xmcda_assign = assignments_as_intervals_to_xmcda(assignments)
+NameError: global name 'assignments_as_intervals_to_xmcda' is not defined]]></text>
   </logMessage>
 </methodMessages>
 </xmcda:XMCDA>
