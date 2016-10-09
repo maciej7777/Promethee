@@ -768,6 +768,10 @@ def get_input_data(input_dir, filenames, params, **kwargs):
         param = px.getParameterByName(trees['method_parameters'], param_name)
         return param
 
+    def get_param_real(param_name, *args, **kwargs):
+        param = px.getParameterByName(trees['method_parameters'], param_name)
+        return float(param)
+
     _functions_dict = {
         'alternatives': get_alternatives,
         'alternatives_flows': get_alternatives_flows,
@@ -781,6 +785,7 @@ def get_input_data(input_dir, filenames, params, **kwargs):
         'categories_rank': get_categories_rank,
         #'concordance': get_concordance,
         'comparison_with': partial(get_param_string, 'comparison_with'),
+        'cut_point': partial(get_param_real, 'cut_point'),
         'profiles_categories': get_profiles_categories,
         #'credibility': get_credibility,
         #'criteria': get_criteria,

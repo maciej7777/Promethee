@@ -4,15 +4,15 @@
   xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd'>
 <methodMessages>
   <errorMessage>
-    <text><![CDATA[NameError: global name 'categories_flows' is not defined]]></text>
+    <text><![CDATA[ZeroDivisionError: float division by zero]]></text>
   </errorMessage>
   <logMessage>
     <text><![CDATA[Traceback (most recent call last):
-  File "./Promsort.py", line 109, in main
-    output = sortPromsort(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows)
-  File "./Promsort.py", line 75, in sortPromsort
-    temp_diff = abs(categories_flows[profiles_categories[i]["id"]] - alternatives_flows[alternative])
-NameError: global name 'categories_flows' is not defined]]></text>
+  File "./Promsort.py", line 158, in main
+    output = sortPromsort(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows, d.cut_point)
+  File "./Promsort.py", line 113, in sortPromsort
+    dk = dk_positive/len_t - dk_negative/len_t1
+ZeroDivisionError: float division by zero]]></text>
   </logMessage>
 </methodMessages>
 </xmcda:XMCDA>

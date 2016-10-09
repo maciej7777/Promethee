@@ -6,7 +6,7 @@
 <methodParameters>
   <parameter name="cut_point">
     <value>
-      <real>1.0</real>
+      <real>0.0</real>
     </value>
   </parameter>
 </methodParameters>

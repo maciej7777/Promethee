@@ -9,11 +9,11 @@
   </alternativeAffectation>
   <alternativeAffectation>
     <alternativeID>a2</alternativeID>
-    <categoryID>C2</categoryID>
+    <categoryID>C1</categoryID>
   </alternativeAffectation>
   <alternativeAffectation>
     <alternativeID>a3</alternativeID>
-    <categoryID>C3</categoryID>
+    <categoryID>C4</categoryID>
   </alternativeAffectation>
   <alternativeAffectation>
     <alternativeID>a4</alternativeID>
@@ -21,11 +21,11 @@
   </alternativeAffectation>
   <alternativeAffectation>
     <alternativeID>a5</alternativeID>
-    <categoryID>C1</categoryID>
+    <categoryID>C2</categoryID>
   </alternativeAffectation>
   <alternativeAffectation>
     <alternativeID>a6</alternativeID>
-    <categoryID>C1</categoryID>
+    <categoryID>C6</categoryID>
   </alternativeAffectation>
 </alternativesAffectations>
 </xmcda:XMCDA>
