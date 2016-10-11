@@ -40,7 +40,7 @@
 
 XMCDA_2_0 = "http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.0.0.xsd"
 XMCDA_2_1 = "http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.1.0.xsd"
-XMCDA_2_2 = "http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd"
+XMCDA_2_2 = "http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd"
 
 from lxml import etree
 import sys, traceback

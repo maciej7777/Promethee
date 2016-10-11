@@ -1,18 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.0'
+<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.1'
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-  xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd'>
+  xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.1 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd'>
 <methodMessages>
   <errorMessage>
-    <text><![CDATA[NameError: global name 'assignmetns' is not defined]]></text>
+    <text><![CDATA[InputDataError: Validation error with the file: 'method_parameters.xml'.]]></text>
   </errorMessage>
   <logMessage>
     <text><![CDATA[Traceback (most recent call last):
-  File "./FlowSortPrometheeIISorting.py", line 85, in main
-    assignments = sortWithCentralProfiles(d.alternatives, d.categories, d.profiles_categories, d.alternatives_flows, d.categories_flows)
-  File "./FlowSortPrometheeIISorting.py", line 55, in sortWithCentralProfiles
-    return assignments
-NameError: global name 'assignmetns' is not defined]]></text>
+  File "./FlowSortPrometheeIISorting.py", line 88, in main
+    d = get_input_data(input_dir, filenames, params)
+  File "/home/maciej7777/Dokumenty/Promethee/FlowSortPrometheeIISorting/common.py", line 815, in get_input_data
+    trees = _get_trees(input_dir, filenames)
+  File "/home/maciej7777/Dokumenty/Promethee/FlowSortPrometheeIISorting/common.py", line 155, in _get_trees
+    .format(f))
+InputDataError: Validation error with the file: 'method_parameters.xml'.]]></text>
   </logMessage>
 </methodMessages>
 </xmcda:XMCDA>

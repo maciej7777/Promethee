@@ -4,15 +4,17 @@
   xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd'>
 <methodMessages>
   <errorMessage>
-    <text><![CDATA[InputDataError: There's a problem with some of your input files, namely: 'profiles_categories.xml'. Please check if the contents of this file matches the method parameters that you've specified.]]></text>
+    <text><![CDATA[InputDataError: Validation error with the file: 'flows.xml'.]]></text>
   </errorMessage>
   <logMessage>
     <text><![CDATA[Traceback (most recent call last):
   File "./PrometheeTriSorting.py", line 69, in main
     d = get_input_data(input_dir, filenames, params, comparison_with='central_profiles')
-  File "/home/maciej7777/Dokumenty/Promethee/PrometheeTriSorting/common.py", line 837, in get_input_data
-    raise InputDataError(msg)
-InputDataError: There's a problem with some of your input files, namely: 'profiles_categories.xml'. Please check if the contents of this file matches the method parameters that you've specified.]]></text>
+  File "/home/maciej7777/Dokumenty/Promethee/PrometheeTriSorting/common.py", line 814, in get_input_data
+    trees = _get_trees(input_dir, filenames)
+  File "/home/maciej7777/Dokumenty/Promethee/PrometheeTriSorting/common.py", line 154, in _get_trees
+    .format(f))
+InputDataError: Validation error with the file: 'flows.xml'.]]></text>
   </logMessage>
 </methodMessages>
 </xmcda:XMCDA>

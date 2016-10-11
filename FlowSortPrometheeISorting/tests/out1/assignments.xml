@@ -21,7 +21,7 @@
         <categoryID>C1</categoryID>
       </lowerBound>
       <upperBound>
-        <categoryID>C1</categoryID>
+        <categoryID>C2</categoryID>
       </upperBound>
     </categoriesInterval>
   </alternativeAffectation>
@@ -29,10 +29,10 @@
     <alternativeID>a3</alternativeID>
     <categoriesInterval>
       <lowerBound>
-        <categoryID>C4</categoryID>
+        <categoryID>C3</categoryID>
       </lowerBound>
       <upperBound>
-        <categoryID>C4</categoryID>
+        <categoryID>C3</categoryID>
       </upperBound>
     </categoriesInterval>
   </alternativeAffectation>
@@ -54,7 +54,7 @@
         <categoryID>C1</categoryID>
       </lowerBound>
       <upperBound>
-        <categoryID>C2</categoryID>
+        <categoryID>C1</categoryID>
       </upperBound>
     </categoriesInterval>
   </alternativeAffectation>
@@ -62,10 +62,10 @@
     <alternativeID>a6</alternativeID>
     <categoriesInterval>
       <lowerBound>
-        <categoryID>C5</categoryID>
+        <categoryID>C1</categoryID>
       </lowerBound>
       <upperBound>
-        <categoryID>C6</categoryID>
+        <categoryID>C1</categoryID>
       </upperBound>
     </categoriesInterval>
   </alternativeAffectation>

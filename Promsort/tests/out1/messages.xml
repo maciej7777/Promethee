@@ -4,15 +4,17 @@
   xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd'>
 <methodMessages>
   <errorMessage>
-    <text><![CDATA[ZeroDivisionError: float division by zero]]></text>
+    <text><![CDATA[InputDataError: Validation error with the file: 'negative_flows.xml'.]]></text>
   </errorMessage>
   <logMessage>
     <text><![CDATA[Traceback (most recent call last):
-  File "./Promsort.py", line 158, in main
-    output = sortPromsort(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows, d.cut_point)
-  File "./Promsort.py", line 113, in sortPromsort
-    dk = dk_positive/len_t - dk_negative/len_t1
-ZeroDivisionError: float division by zero]]></text>
+  File "./Promsort.py", line 166, in main
+    d = get_input_data(input_dir, filenames, params, comparison_with='boundary_profiles')
+  File "/home/maciej7777/Dokumenty/Promethee/Promsort/common.py", line 814, in get_input_data
+    trees = _get_trees(input_dir, filenames)
+  File "/home/maciej7777/Dokumenty/Promethee/Promsort/common.py", line 154, in _get_trees
+    .format(f))
+InputDataError: Validation error with the file: 'negative_flows.xml'.]]></text>
   </logMessage>
 </methodMessages>
 </xmcda:XMCDA>

@@ -32,9 +32,10 @@ from lxml import etree
 
 
 HEADER = ("<?xml version='1.0' encoding='UTF-8'?>\n"
-          "<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.0'\n"
+          "<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.1'\n"
           "  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'\n"
-          "  xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.0 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.0.xsd'>\n")
+          "  xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.1 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd'>\n")
+
 FOOTER = "</xmcda:XMCDA>"
 
 INPUT_DATA_ERROR_MSG = ("There's a problem with some of your input files, "
