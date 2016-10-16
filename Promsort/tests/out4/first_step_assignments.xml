@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.1'
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.1 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd'>
+<alternativesAffectations>
+  <alternativeAffectation>
+    <alternativeID>a1</alternativeID>
+    <categoriesInterval>
+      <lowerBound>
+        <categoryID>C2</categoryID>
+      </lowerBound>
+      <upperBound>
+        <categoryID>C2</categoryID>
+      </upperBound>
+    </categoriesInterval>
+  </alternativeAffectation>
+  <alternativeAffectation>
+    <alternativeID>a2</alternativeID>
+    <categoriesInterval>
+      <lowerBound>
+        <categoryID>C2</categoryID>
+      </lowerBound>
+      <upperBound>
+        <categoryID>C3</categoryID>
+      </upperBound>
+    </categoriesInterval>
+  </alternativeAffectation>
+  <alternativeAffectation>
+    <alternativeID>a3</alternativeID>
+    <categoriesInterval>
+      <lowerBound>
+        <categoryID>C3</categoryID>
+      </lowerBound>
+      <upperBound>
+        <categoryID>C3</categoryID>
+      </upperBound>
+    </categoriesInterval>
+  </alternativeAffectation>
+</alternativesAffectations>
+</xmcda:XMCDA>

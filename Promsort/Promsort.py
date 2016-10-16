@@ -51,7 +51,7 @@ def isIncomparable(action1_positive_flow, action1_negative_flow, action2_positiv
     
 
 def sortPromsort(alternatives, categories, profiles_categories, alternatives_positive_flows, alternatives_negative_flows, 
-categories_positive_flows, categories_negative_flows, cut_point):
+categories_positive_flows, categories_negative_flows, cut_point, assign_to_better_class):
 
   first_step_assignments = {}
   assignments = {}
@@ -122,7 +122,12 @@ categories_positive_flows, categories_negative_flows, cut_point):
 
       dk = dk1 - dk2  
 
-      if dk >= cut_point:
+
+      if dk > cut_point:
+        assignments[alternative_to_assign] = class_t1
+      elif dk < cut_point:
+        assignments[alternative_to_assign] = class_t
+      elif assign_to_better_class is True:
         assignments[alternative_to_assign] = class_t1
       else:
         assignments[alternative_to_assign] = class_t
@@ -161,11 +166,12 @@ def main():
       'categories_negative_flows',
       'categories_rank',
       'profiles_categories',
-      'cut_point'
+      'cut_point',
+      'assign_to_better_class'
     ]
     d = get_input_data(input_dir, filenames, params, comparison_with='boundary_profiles')
   
-    output = sortPromsort(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows, d.cut_point)
+    output = sortPromsort(d.alternatives, d.categories, d.profiles_categories, d.alternatives_positive_flows, d.alternatives_negative_flows, d.categories_positive_flows, d.categories_negative_flows, d.cut_point, d.assign_to_better_class)
     #print (output)
     #print (output[0])
     assignments = output[0]

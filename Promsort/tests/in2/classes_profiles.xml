@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.1'
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.1 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd'>
+	<projectReference>
+		<title>SixRealCars - Categories profiles</title>
+		<comment>Only the profiles and categories association, from the "SixRealCars" data set.</comment>
+	</projectReference>
+	<categoriesProfiles>
+		<categoryProfile>
+			<alternativeID>b3</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>C3</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>C4</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b1</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>C1</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>C2</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b4</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>C4</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>C5</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b2</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>C2</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>C3</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b5</alternativeID>
+			<limits>
+				<lowerCategory>
+					<categoryID>C5</categoryID>
+				</lowerCategory>
+				<upperCategory>
+					<categoryID>C6</categoryID>
+				</upperCategory>
+			</limits>
+		</categoryProfile>
+	</categoriesProfiles>
+</xmcda:XMCDA>

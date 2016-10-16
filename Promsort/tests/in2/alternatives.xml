@@ -1,0 +1,21 @@
+<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.1'
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.1 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd'>
+	<projectReference>
+		<comment>"Six real cars" data set. Thanks to Quantin Hayez for having gathered
+		the data (from the manufacturers web sites). Transformed into XMCDA
+		and published with his permission. Note that the weights and thresholds have been
+		arbitrarily fixed.</comment>
+	</projectReference>
+
+	<alternatives>
+		<alternative id="a1" name="1" />
+		<alternative id="a2" name="2" />
+		<alternative id="a3" name="3" />
+		<alternative id="a4" name="4" />
+		<alternative id="a5" name="5" />
+		<alternative id="a6" name="6" />
+	</alternatives>
+
+</xmcda:XMCDA>
+  

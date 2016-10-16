@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmcda:XMCDA xmlns:xmcda='http://www.decision-deck.org/2012/XMCDA-2.2.1'
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xsi:schemaLocation='http://www.decision-deck.org/2012/XMCDA-2.2.1 http://www.decision-deck.org/xmcda/_downloads/XMCDA-2.2.1.xsd'>
+	<projectReference>
+		<title>SixRealCars - Categories profiles</title>
+		<comment>Only the profiles and categories association, from the "SixRealCars" data set.</comment>
+	</projectReference>
+	<categoriesProfiles>
+		<categoryProfile>
+			<alternativeID>b3</alternativeID>
+            		<central>
+                		<categoryID>C3</categoryID>
+			</central>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b1</alternativeID>
+            		<central>
+                		<categoryID>C1</categoryID>
+			</central>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b4</alternativeID>
+            		<central>
+                		<categoryID>C4</categoryID>
+			</central>
+		</categoryProfile>
+		<categoryProfile>
+			<alternativeID>b2</alternativeID>
+            		<central>
+                		<categoryID>C2</categoryID>
+			</central>
+		</categoryProfile>
+	</categoriesProfiles>
+</xmcda:XMCDA>

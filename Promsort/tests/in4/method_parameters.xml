@@ -11,7 +11,7 @@
   </parameter>
   <parameter name="assign_to_better_class">
     <value>
-      <boolean>true</boolean>
+      <boolean>false</boolean>
     </value>
 </parameter>
 </methodParameters>
